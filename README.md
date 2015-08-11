@@ -39,7 +39,7 @@ Just throw the header into your project, be wary of the `whoshuu` namespace, and
 
 ## Requirements
 
-The only explicit requirement is a C++11 compatible compiler such as clang or gcc. The minimum required version of gcc is unknown, so if anyone has trouble building using library with a specific version of gcc, do let me know.
+The only explicit requirement is a C++11 compatible compiler such as clang or gcc. The minimum required version of gcc is unknown, so if anyone has trouble using library with a specific version of gcc, do let me know.
 
 ## Contributing
 
