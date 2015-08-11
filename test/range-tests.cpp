@@ -250,7 +250,7 @@ TEST(RangeFloatTests, ValueStepWrongDirectionExceptionTest) {
 TEST(RangeFloatTests, ValueAnotherStepWrongDirectionExceptionTest) {
     bool thrown = false;
     try {
-        range(10, 0, 1);
+        range(10.f, 0.f, 1.f);
     } catch (const std::invalid_argument& e) {
         thrown = true;
         EXPECT_EQ(std::string{"Range arguments must result in termination"},
@@ -262,7 +262,7 @@ TEST(RangeFloatTests, ValueAnotherStepWrongDirectionExceptionTest) {
 TEST(RangeFloatTests, ValueZeroStepExceptionTest) {
     bool thrown = false;
     try {
-        range(0, 10, 0);
+        range(0.f, 10.f, 0.f);
     } catch (const std::invalid_argument& e) {
         thrown = true;
         EXPECT_EQ(std::string{"Range step argument must not be zero"},
@@ -382,7 +382,7 @@ TEST(RangeDoubleTests, ValueStepWrongDirectionExceptionTest) {
 TEST(RangeDoubleTests, ValueAnotherStepWrongDirectionExceptionTest) {
     bool thrown = false;
     try {
-        range(10, 0, 1);
+        range(10., 0., 1.);
     } catch (const std::invalid_argument& e) {
         thrown = true;
         EXPECT_EQ(std::string{"Range arguments must result in termination"},
@@ -394,7 +394,7 @@ TEST(RangeDoubleTests, ValueAnotherStepWrongDirectionExceptionTest) {
 TEST(RangeDoubleTests, ValueZeroStepExceptionTest) {
     bool thrown = false;
     try {
-        range(0, 10, 0);
+        range(0., 10., 0.);
     } catch (const std::invalid_argument& e) {
         thrown = true;
         EXPECT_EQ(std::string{"Range step argument must not be zero"},
