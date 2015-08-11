@@ -1,0 +1,3 @@
+[submodule "opt/googletest"]
+	path = opt/googletest
+	url = git://github.com/whoshuu/googletest.git
