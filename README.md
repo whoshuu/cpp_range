@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     }
 
     for (auto i : range(10, 0, -1) {
-        std::cout << i << std::endl; // Prints 10 to 0, counting down!
+        std::cout << i << std::endl; // Prints 10 to 1, counting down!
     }
 
     for (auto i : range(2.718, 100.0, 3.14) {
