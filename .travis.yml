@@ -9,9 +9,9 @@ env:
   global:
     - GTEST_SHUFFLE=1
   matrix:
-    - CXX=g++-4.9
-    - CXX=g++-5
-    - CXX=clang-3.6
+    - COMPILER=g++-4.9
+    - COMPILER=g++-5
+    - COMPILER=clang-3.6
 
 addons:
   apt:
@@ -29,9 +29,10 @@ addons:
       - python-yaml
 
 install:
-    - if [ "$CXX" == "g++-4.9" ]; then pip install --user git+git://github.com/eddyxu/cpp-coveralls.git; fi
+    - if [ "$COMPILER" == "g++-4.9" ]; then pip install --user git+git://github.com/eddyxu/cpp-coveralls.git; fi
 
 before_script:
+  - export CXX=$COMPILER
   - cmake --version
   - mkdir build
   - cd build
@@ -42,4 +43,4 @@ script:
   - ctest -V
     
 after_success:
-    - if [ "$CXX" == "g++-4.9" ]; then coveralls --exclude ../test/range-tests.cpp --include ../include/range.h --verbose --gcov-options '\-lp' --gcov 'gcov-4.9'; fi
+    - if [ "$COMPILER" == "g++-4.9" ]; then coveralls --exclude ../test/range-tests.cpp --include ../include/range.h --verbose --gcov-options '\-lp' --gcov 'gcov-4.9'; fi
