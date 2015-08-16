@@ -35,6 +35,7 @@ else()
     endif()
 endif()
 
+set(gtest_force_shared_crt ON)
 set(BUILD_SHARED_LIBS OFF)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(RANGE_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
