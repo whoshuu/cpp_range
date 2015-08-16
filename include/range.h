@@ -32,8 +32,10 @@ class Range {
         iterator operator++() { value_ += step_; return *this; }
         reference operator*() { return value_; }
         const pointer operator->() { return &value_; }
-        bool operator==(const iterator& rhs) { return value_ >= rhs.value_; }
-        bool operator!=(const iterator& rhs) { return value_ < rhs.value_; }
+        bool operator==(const iterator& rhs) { return step_ > 0 ? value_ >= rhs.value_
+                                                                : value_ <= rhs.value_; }
+        bool operator!=(const iterator& rhs) { return step_ > 0 ? value_ < rhs.value_
+                                                                : value_ > rhs.value_; }
         
       private:
         const T step_;
