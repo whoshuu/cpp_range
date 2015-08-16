@@ -6,7 +6,7 @@ before_build:
     - git submodule update --init --recursive
 build_script:
     - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
-    - cmake -DCMAKE_BUILD_TYPE=Release . -G "Visual Studio 14 2015"
-    - cmake --build .
+    - cmake . -G "Visual Studio 14 2015"
+    - cmake --build . --config Release
 test_script:
     - ctest -V
