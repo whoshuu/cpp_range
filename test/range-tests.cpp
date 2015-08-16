@@ -72,7 +72,7 @@ TEST(RangeIntegerTests, ValueStartStopStepReverseTest) {
                 auto expected = start;
                 for (auto computed : range(start, stop, step)) {
                     EXPECT_EQ(expected, computed);
-                    expected -= step;
+                    expected += step;
                 }
             }
         }
@@ -180,7 +180,7 @@ TEST(RangeFloatTests, ValueStopReverseTest) {
         auto expected = 100.f;
         for (auto computed : range(100.f, stop, -1.5f)) {
             EXPECT_EQ(expected, computed);
-            --expected;
+            expected -= 1.5f;
         }
     }
 }
@@ -191,7 +191,7 @@ TEST(RangeFloatTests, ValueStartStopReverseTest) {
             auto expected = start;
             for (auto computed : range(start, stop, -1.5f)) {
                 EXPECT_EQ(expected, computed);
-                --expected;
+                expected -= 1.5f;
             }
         }
     }
@@ -204,7 +204,7 @@ TEST(RangeFloatTests, ValueStartStopStepReverseTest) {
                 auto expected = start;
                 for (auto computed : range(start, stop, step)) {
                     EXPECT_EQ(expected, computed);
-                    expected -= step;
+                    expected += step;
                 }
             }
         }
@@ -312,7 +312,7 @@ TEST(RangeDoubleTests, ValueStopReverseTest) {
         auto expected = 100.;
         for (auto computed : range(100., stop, -1.5)) {
             EXPECT_EQ(expected, computed);
-            --expected;
+            expected -= 1.5;
         }
     }
 }
@@ -323,7 +323,7 @@ TEST(RangeDoubleTests, ValueStartStopReverseTest) {
             auto expected = start;
             for (auto computed : range(start, stop, -1.5)) {
                 EXPECT_EQ(expected, computed);
-                --expected;
+                expected -= 1.5;
             }
         }
     }
@@ -336,7 +336,7 @@ TEST(RangeDoubleTests, ValueStartStopStepReverseTest) {
                 auto expected = start;
                 for (auto computed : range(start, stop, step)) {
                     EXPECT_EQ(expected, computed);
-                    expected -= step;
+                    expected += step;
                 }
             }
         }
