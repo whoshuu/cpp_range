@@ -34,7 +34,7 @@ addons:
       - python-yaml
 
 install:
-  - if [ "$GENERATE_COVERAGE" == "ON" ]; then pip install cpp-coveralls; fi
+    - if [ "$GENERATE_COVERAGE" == "ON" ]; then pip install --user git+git://github.com/eddyxu/cpp-coveralls.git; fi
 
 before_script:
   - cmake --version
