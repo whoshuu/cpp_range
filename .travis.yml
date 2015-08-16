@@ -1,35 +1,40 @@
 language: cpp
 
+sudo: false
+
 compiler:
   - gcc
-  - clang
 
 env:
   global:
     - GTEST_SHUFFLE=1
   matrix:
-    - USE_SYSTEM_CMAKE=ON
-    - USE_SYSTEM_CMAKE=OFF
+    - CXX=g++-4.9
+    - CXX=g++-5
+    - CXX=clang-3.6
 
 matrix:
   include:
     - compiler: gcc
-      env: USE_SYSTEM_CMAKE=ON USE_5_1=ON
-    - compiler: gcc
-      env: USE_SYSTEM_CMAKE=OFF GENERATE_COVERAGE=ON
+      env: CXX=g++-4.9 GENERATE_COVERAGE=ON
 
-sudo: required
-
-before_install:
-  - sudo apt-get update
-  - if [ "$GENERATE_COVERAGE" == "ON" ]; then sudo pip install cpp-coveralls; fi
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-precise
+      - llvm-toolchain-precise-3.6
+      - llvm-toolchain-precise-3.7
+    packages:
+      - g++-4.9
+      - g++-5
+      - clang-3.6
+      - valgrind
+      - python-pip
+      - python-yaml
 
 install:
-  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-  - sudo apt-get update
-  - if [ "$USE_5_1" == "ON" ]; then sudo apt-get install g++-5 -y --force-yes; else sudo apt-get install g++-4.8 -y --force-yes; fi
-  - if [ "$CXX" == "g++" ]; then if [ "$USE_5_1" == "ON" ]; then export CXX="g++-5" CC="gcc-5"; else export CXX="g++-4.8" CC="gcc-4.8"; fi; fi
-  - if [ "$USE_SYSTEM_CMAKE" == "OFF" ]; then sudo apt-get remove cmake && wget http://www.cmake.org/files/v3.2/cmake-3.2.1.tar.gz && tar -xzf cmake-3.2.1.tar.gz && cd cmake-3.2.1 && ./bootstrap > /dev/null && make -j8 > /dev/null && sudo make install && cd .. && rm -rf cmake-3.2.1 cmake-3.2.1.tar.gz; else sudo apt-get install -y cmake; fi
+  - if [ "$GENERATE_COVERAGE" == "ON" ]; then pip install cpp-coveralls; fi
 
 before_script:
   - cmake --version
@@ -42,4 +47,4 @@ script:
   - ctest -V
     
 after_success:
-  - if [ "$GENERATE_COVERAGE" == "ON" ]; then coveralls --gcov-options '\-lp' --gcov /usr/bin/gcov-4.8 --exclude test/range-tests.cpp --include include/range.h --verbose; fi
+  - if [ "$GENERATE_COVERAGE" == "ON" ]; then coveralls --gcov-options '\-lp' --gcov /usr/bin/gcov-4.9 --exclude test/range-tests.cpp --include include/range.h --verbose; fi
