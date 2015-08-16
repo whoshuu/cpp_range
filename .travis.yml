@@ -43,4 +43,4 @@ script:
   - ctest -V
     
 after_success:
-    - if [ "$COMPILER" == "g++-4.9" ]; then coveralls -i 'include' --root ../ --verbose --gcov-options '\-lp' --gcov 'gcov-4.9'; fi
+    - if [ "$COMPILER" == "g++-4.9" ]; then coveralls -i 'include' -i 'test' --root ../ --verbose --gcov-options '\-lp' --gcov 'gcov-4.9'; fi
