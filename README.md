@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
 
 ## Benchmarks
 
-Here's an initial benchmark of my library against a [naive vector range implementation](https://gist.github.com/whoshuu/246b10cdd7341895453f) and [basic for-loop](https://gist.github.com/whoshuu/6eea496a891ef03a5b9e):
+Here's an initial benchmark using Clang 3.6.0 of my library against a [naive vector range implementation](https://gist.github.com/whoshuu/246b10cdd7341895453f) and [basic for-loop](https://gist.github.com/whoshuu/6eea496a891ef03a5b9e):
 
 ![C++ Range Benchmark](https://raw.githubusercontent.com/whoshuu/cpp_range/master/benchmark/benchmark.png)
 
