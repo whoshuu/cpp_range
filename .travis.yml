@@ -13,11 +13,6 @@ env:
     - CXX=g++-5
     - CXX=clang-3.6
 
-matrix:
-  include:
-    - compiler: gcc
-      env: CXX=g++-4.9 GENERATE_COVERAGE=ON
-
 addons:
   apt:
     sources:
@@ -34,7 +29,7 @@ addons:
       - python-yaml
 
 install:
-    - if [ "$GENERATE_COVERAGE" == "ON" ]; then pip install --user git+git://github.com/eddyxu/cpp-coveralls.git; fi
+    - if [ "$CXX" == "g++-4.9" ]; then pip install --user git+git://github.com/eddyxu/cpp-coveralls.git; fi
 
 before_script:
   - cmake --version
@@ -47,4 +42,4 @@ script:
   - ctest -V
     
 after_success:
-  - if [ "$GENERATE_COVERAGE" == "ON" ]; then coveralls --gcov-options '\-lp' --gcov /usr/bin/gcov-4.9 --exclude test/range-tests.cpp --include include/range.h --verbose; fi
+    - if [ "$CXX" == "g++-4.9" ]; then coveralls --gcov-options '\-lp' --gcov /usr/bin/gcov-4.9 --exclude test/range-tests.cpp --include include/range.h --verbose; fi
