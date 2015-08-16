@@ -42,4 +42,4 @@ script:
   - ctest -V
     
 after_success:
-    - if [ "$CXX" == "g++-4.9" ]; then coveralls --gcov-options '\-lp' --gcov /usr/bin/gcov-4.9 --exclude test/range-tests.cpp --include include/range.h --verbose; fi
+    - if [ "$CXX" == "g++-4.9" ]; then coveralls --exclude ../test/range-tests.cpp --include ../include/range.h --verbose --gcov-options '\-lp' --gcov 'gcov-4.9'; fi
