@@ -9,4 +9,4 @@ build_script:
     - cmake . -G "Visual Studio 14 2015" -DBUILD_SHARED_LIBS=ON
     - cmake --build . --config Release
 test_script:
-    - ctest -V
+    - ctest -V --build-config Release
