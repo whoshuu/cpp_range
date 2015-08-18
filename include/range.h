@@ -1,7 +1,8 @@
 #ifndef WHOSHUU_Range_H
 #define WHOSHUU_Range_H
 
-#include <exception>
+#include <iterator>
+#include <stdexcept>
 
 
 namespace whoshuu {
