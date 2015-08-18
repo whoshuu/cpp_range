@@ -8,5 +8,5 @@ build_script:
     - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
     - cmake . -G "Visual Studio 14 2015" -DBUILD_SHARED_LIBS=ON
     - cmake --build . --config Release
-test_script:
-    - Release\range-tests.exe
+after_build:
+    - ctest -VV --build-config Release
