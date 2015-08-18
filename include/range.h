@@ -29,17 +29,19 @@ class Range {
         typedef T& reference;
         typedef T* pointer;
 
-        iterator(value_type value, value_type step) : value_{value}, step_{step} {}
+        iterator(value_type value, value_type step) : value_{value}, step_{step},
+                                                      positive_step_(step_ > 0) {}
         iterator operator++() { value_ += step_; return *this; }
         reference operator*() { return value_; }
         const pointer operator->() { return &value_; }
-        bool operator==(const iterator& rhs) { return step_ > 0 ? value_ >= rhs.value_
-                                                                : value_ <= rhs.value_; }
-        bool operator!=(const iterator& rhs) { return step_ > 0 ? value_ < rhs.value_
-                                                                : value_ > rhs.value_; }
+        bool operator==(const iterator& rhs) { return positive_step_ ? value_ >= rhs.value_
+                                                                     : value_ <= rhs.value_; }
+        bool operator!=(const iterator& rhs) { return positive_step_ ? value_ < rhs.value_
+                                                                     : value_ > rhs.value_; }
         
       private:
         const T step_;
+        const bool positive_step_;
         value_type value_;
     };
     
