@@ -49,7 +49,7 @@ For a more fully featured iterator toolset, check out Ryan Haining's [cppitertoo
 
 ## Requirements
 
-The only explicit requirement is a C++11 compatible compiler such as clang or gcc. The minimum required version of gcc is unknown, so if anyone has trouble using library with a specific version of gcc, do let me know.
+The only explicit requirement is a C++11 compatible compiler such as clang, gcc, or a recent version of MSVC. The minimum required version of gcc is unknown, so if anyone has trouble using library with a specific version of gcc, do let me know.
 
 ## Contributing
 
