@@ -1,6 +1,6 @@
 # C++ Range
 
-[![Build Status](https://travis-ci.org/whoshuu/cpp_range.svg?branch=master)](https://travis-ci.org/whoshuu/cpp_range)
+[![Travis Build Status](https://travis-ci.org/whoshuu/cpp_range.svg?branch=master)](https://travis-ci.org/whoshuu/cpp_range) [![Appveyor Build status](https://ci.appveyor.com/api/projects/status/se0reugxm1x7lisr?svg=true)](https://ci.appveyor.com/project/whoshuu/cpp-range)
 
 Have your cake and eat it too. Who says you can't have nice things in an efficient, type-safe, compiled language? Don't let your Python-slinging coworkers have the last laugh, this is C++ Range:
 
