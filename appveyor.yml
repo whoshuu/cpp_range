@@ -1,12 +1,14 @@
 version: '{build}'
+configuration:
+    - release
 os: Visual Studio 2015
-init: []
-install: []
 before_build:
     - git submodule update --init --recursive
-build_script:
-    - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
-    - cmake . -G "Visual Studio 14 2015" -DBUILD_SHARED_LIBS=ON
-    - cmake --build . --config Release
-after_build:
-    - ctest -VV --build-config Release
+    - mkdir build
+    - cd build
+    - cmake .. -G "Visual Studio 14 2015"
+build:
+    project: C:\projects\cpp-range\build\cpp_range.sln
+test_script:
+    - cd C:\projects\cpp-range\build
+    - ctest -C %Configuration%
