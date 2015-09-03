@@ -35,12 +35,13 @@ else()
     endif()
 endif()
 
-set(gtest_force_shared_crt ON)
+set(gtest_force_shared_crt ON CACHE BOOL "Always use /MD")
+enable_testing()
 set(BUILD_SHARED_LIBS OFF)
+
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(RANGE_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
 mark_as_advanced(RANGE_INCLUDE_DIRS)
-enable_testing()
 
 add_subdirectory(opt)
 add_subdirectory(test)
