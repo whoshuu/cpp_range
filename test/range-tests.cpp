@@ -1,5 +1,5 @@
 #include <exception>
-
+#include <limits>
 #include <gtest/gtest.h>
 
 #include "range.h"
@@ -134,6 +134,18 @@ TEST(RangeIntegerTests, ValueZeroStepExceptionTest) {
     } catch (const std::invalid_argument& e) {
         thrown = true;
         EXPECT_EQ(std::string{"Range step argument must not be zero"},
+                  std::string{e.what()});
+    }
+    EXPECT_TRUE(thrown);
+}
+
+TEST(RangeIntegerTests, IntegerWrapAroundTest) {
+    bool thrown = false;
+    try {
+        range(int64_t{1}, std::numeric_limits<int64_t>::min(), int64_t{1});
+    } catch (const std::invalid_argument& e) {
+        thrown = true;
+        EXPECT_EQ(std::string{"Range arguments must result in termination"},
                   std::string{e.what()});
     }
     EXPECT_TRUE(thrown);
