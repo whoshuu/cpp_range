@@ -152,6 +152,18 @@ TEST(RangeIntegerTests, IntegerWrapAroundTest) {
     EXPECT_TRUE(thrown);
 }
 
+TEST(RangeIntegerTests, IntegerWrapAroundReverseTest) {
+    bool thrown = false;
+    try {
+        range(int64_t{1}, std::numeric_limits<int64_t>::max(), int64_t{-1});
+    } catch (const std::invalid_argument& e) {
+        thrown = true;
+        EXPECT_EQ(std::string{"Range arguments must result in termination"},
+                  std::string{e.what()});
+    }
+    EXPECT_TRUE(thrown);
+}
+
 TEST(RangeFloatTests, ValueStopTest) {
     for (auto stop = 0.f; stop < 100.f; ++stop) {
         auto expected = 0.f;
