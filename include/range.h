@@ -15,7 +15,7 @@ class Range {
         if (step_ == 0) {
             throw std::invalid_argument("Range step argument must not be zero");
         } else {
-            if ((start > stop && step_ > 0) || (start < stop && step_ < 0)) {
+            if ((start_ > stop_ && step_ > 0) || (start_ < stop_ && step_ < 0)) {
                 throw std::invalid_argument("Range arguments must result in termination");
             }
         }
