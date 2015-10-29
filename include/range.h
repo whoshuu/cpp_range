@@ -28,28 +28,30 @@ class Range {
         typedef T& reference;
         typedef T* pointer;
 
-        iterator(value_type value, value_type step) : value_{value}, step_{step},
-                                                      positive_step_(step_ > 0) {}
+        iterator(value_type value, value_type step, value_type boundary) : value_{value}, step_{step},
+                                                                           boundary_{boundary},
+                                                                           positive_step_(step_ > 0) {}
         iterator operator++() { value_ += step_; return *this; }
         reference operator*() { return value_; }
         const pointer operator->() { return &value_; }
-        bool operator==(const iterator& rhs) { return positive_step_ ? value_ >= rhs.value_
-                                                                     : value_ <= rhs.value_; }
-        bool operator!=(const iterator& rhs) { return positive_step_ ? value_ < rhs.value_
-                                                                     : value_ > rhs.value_; }
+        bool operator==(const iterator& rhs) { return positive_step_ ? (value_ >= rhs.value_ && value_ > boundary_)
+                                                                     : (value_ <= rhs.value_ && value_ < boundary_); }
+        bool operator!=(const iterator& rhs) { return positive_step_ ? (value_ < rhs.value_ && value_ > boundary_)
+                                                                     : (value_ > rhs.value_ && value_ < boundary_); }
         
       private:
-        const T step_;
-        const bool positive_step_;
         value_type value_;
+        const T step_;
+        const T boundary_;
+        const bool positive_step_;
     };
     
     iterator begin() const {
-        return iterator(start_, step_);
+        return iterator(start_, step_, start_);
     }
     
     iterator end() const {
-        return iterator(stop_, step_);
+        return iterator(stop_, step_, start_);
     }
   
   private:

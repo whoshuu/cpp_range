@@ -164,6 +164,30 @@ TEST(RangeIntegerTests, IntegerWrapAroundReverseTest) {
     EXPECT_TRUE(thrown);
 }
 
+TEST(RangeIntegerTests, IntegerWrapAroundStepTest) {
+    auto testRange = range(std::numeric_limits<int64_t>::min() + 1,
+                           std::numeric_limits<int64_t>::min(),
+                           int64_t{-2});
+
+    unsigned int loopCount = 0;
+    for (auto i : testRange) {
+        ++loopCount;
+        ASSERT_LE(loopCount, 1);
+    }
+}
+
+TEST(RangeIntegerTests, IntegerWrapAroundStepReverseTest) {
+    auto testRange = range(std::numeric_limits<int64_t>::max() - 1,
+                           std::numeric_limits<int64_t>::max(),
+                           int64_t{2});
+    unsigned int loopCount = 0;
+    for (auto i : testRange) {
+        ++loopCount;
+        ASSERT_LE(loopCount, 1);
+    }
+}
+
+
 TEST(RangeFloatTests, ValueStopTest) {
     for (auto stop = 0.f; stop < 100.f; ++stop) {
         auto expected = 0.f;
